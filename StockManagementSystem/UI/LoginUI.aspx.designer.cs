@@ -10,16 +10,16 @@
 namespace StockManagementSystem.UI {
     
     
-    public partial class ViewSalesBetweenTwoDateUI {
+    public partial class LoginUI {
         
         /// <summary>
-        /// viewSalesForm control.
+        /// loginForm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm viewSalesForm;
+        protected global::System.Web.UI.HtmlControls.HtmlForm loginForm;
         
         /// <summary>
         /// Label1 control.
@@ -31,22 +31,22 @@ namespace StockManagementSystem.UI {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// fromDateTextBox control.
+        /// userNameTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox fromDateTextBox;
+        protected global::System.Web.UI.WebControls.TextBox userNameTextBox;
         
         /// <summary>
-        /// fromDateErrorMessageLabel control.
+        /// userNameErrorMessageLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label fromDateErrorMessageLabel;
+        protected global::System.Web.UI.WebControls.Label userNameErrorMessageLabel;
         
         /// <summary>
         /// Label2 control.
@@ -58,31 +58,31 @@ namespace StockManagementSystem.UI {
         protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// toDateTextBox control.
+        /// passwordTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox toDateTextBox;
+        protected global::System.Web.UI.WebControls.TextBox passwordTextBox;
         
         /// <summary>
-        /// toDateErrorMessageLabel control.
+        /// passwordErrorMessageLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label toDateErrorMessageLabel;
+        protected global::System.Web.UI.WebControls.Label passwordErrorMessageLabel;
         
         /// <summary>
-        /// viewSalesSearchButton control.
+        /// logInButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button viewSalesSearchButton;
+        protected global::System.Web.UI.WebControls.Button logInButton;
         
         /// <summary>
         /// messageLabel control.
@@ -92,14 +92,5 @@ namespace StockManagementSystem.UI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label messageLabel;
-        
-        /// <summary>
-        /// salesSummaryGridView control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView salesSummaryGridView;
     }
 }

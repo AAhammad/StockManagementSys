@@ -20,7 +20,7 @@ namespace StockManagementSystem.BLL
 
         }
 
-        public List<StockOut> GetAllItemBetweenTwoDate(DateTime froDateTime, DateTime toDateTime)
+        public List<StockOutVM> GetAllItemBetweenTwoDate(DateTime froDateTime, DateTime toDateTime)
         {
             return aStockOutGateway.GetAllItemBetweenTwoDate(froDateTime,toDateTime);
         }

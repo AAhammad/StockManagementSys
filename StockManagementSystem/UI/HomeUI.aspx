@@ -19,8 +19,7 @@
         <br />
         <br />
         <br />
-        <br />
-      <%--  <asp:LinkButton ID="LinkButton1" href="CategorySetupUI.aspx" runat="server">Category Setup</asp:LinkButton>
+        <asp:LinkButton ID="LinkButton1" href="CategorySetupUI.aspx" runat="server">Category Setup</asp:LinkButton>
         <br />
         <br/>
         <asp:LinkButton ID="LinkButton2" href="CompanySetupUI.aspx" runat="server">Company Setup</asp:LinkButton>
@@ -42,7 +41,7 @@
         <br />
         <asp:LinkButton ID="LinkButton7" href="ViewSalesBetweenTwoDateUI.aspx"  runat="server">View Sales Between Two Dates</asp:LinkButton>
         
-        <br />--%>
+        <br />
         
     </div>
         

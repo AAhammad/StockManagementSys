@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web.UI.WebControls;
 using StockManagementSystem.BLL;
+using StockManagementSystem.Models;
 
 namespace StockManagementSystem.UI
 {
@@ -19,7 +21,7 @@ namespace StockManagementSystem.UI
                 companyDropDownList.DataValueField = "CompanyId";
                 companyDropDownList.DataBind();
 
-                ListItem aListItem=new ListItem("Select Company","-1");
+                ListItem aListItem=new ListItem("Select Company","");
                 companyDropDownList.Items.Insert(0,aListItem);
 
                 categoryDropDownList.DataSource = aCategoryManager.GetAllCategoriesInfo();
@@ -27,38 +29,104 @@ namespace StockManagementSystem.UI
                 categoryDropDownList.DataValueField = "CategoryId";
                 categoryDropDownList.DataBind();
 
-                ListItem listItem=new ListItem("Select Category","-1");
+                ListItem listItem=new ListItem("Select Category","");
                 categoryDropDownList.Items.Insert(0,listItem);
             }
         }
 
-        protected void SearchButton_Click(object sender, EventArgs e)
+        protected void searchButton_Click(object sender, EventArgs e)
         {
             if (companyDropDownList.SelectedIndex == 0 & categoryDropDownList.SelectedIndex == 0)
             {
-                itemSummaryGridView.DataSource = aItemManager.GetAllItemSummary();
-                itemSummaryGridView.DataBind();
-                
+                List<ItemSummaryVM> aItemSummaryVms = new List<ItemSummaryVM>();
+
+                aItemSummaryVms = aItemManager.GetAllItemSummary();
+
+                if (aItemSummaryVms.Count == 0)
+                {
+                    messageLabel.Text = "No item found";
+                    itemSummaryGridView.DataSource = aItemSummaryVms;
+                    itemSummaryGridView.DataBind();
+                }
+                else
+                {
+                    messageLabel.Text = "";
+                    itemSummaryGridView.DataSource = aItemSummaryVms;
+                    itemSummaryGridView.DataBind();
+                }
+
             }
-            else if (companyDropDownList.SelectedIndex >0 & categoryDropDownList.SelectedIndex == 0)
+            else if (companyDropDownList.SelectedIndex > 0 & categoryDropDownList.SelectedIndex == 0)
             {
-                itemSummaryGridView.DataSource = aItemManager.GetAllItemSummaryByCompany(Convert.ToInt32(companyDropDownList.SelectedValue));
-                itemSummaryGridView.DataBind();
+                List<ItemSummaryVM> aItemSummaryVms = new List<ItemSummaryVM>();
+
+                aItemSummaryVms = aItemManager.GetAllItemSummaryByCompany(Convert.ToInt32(companyDropDownList.SelectedValue));
+
+                if (aItemSummaryVms.Count == 0)
+                {
+                    messageLabel.Text = "No item found";
+                    itemSummaryGridView.DataSource = aItemSummaryVms;
+                    itemSummaryGridView.DataBind();
+                }
+                else
+                {
+                    messageLabel.Text = "";
+                    itemSummaryGridView.DataSource = aItemSummaryVms;
+                    itemSummaryGridView.DataBind();
+                }
             }
 
-            else if (companyDropDownList.SelectedIndex== 0 & categoryDropDownList.SelectedIndex >0)
+            else if (companyDropDownList.SelectedIndex == 0 & categoryDropDownList.SelectedIndex > 0)
             {
-                itemSummaryGridView.DataSource = aItemManager.GetAllItemSummaryByCategory(Convert.ToInt32(categoryDropDownList.SelectedValue));
-                itemSummaryGridView.DataBind();
+                List<ItemSummaryVM> aItemSummaryVms = new List<ItemSummaryVM>();
+
+                aItemSummaryVms = aItemManager.GetAllItemSummaryByCategory(Convert.ToInt32(categoryDropDownList.SelectedValue));
+
+                if (aItemSummaryVms.Count == 0)
+                {
+                    messageLabel.Text = "No item found";
+                    itemSummaryGridView.DataSource = aItemSummaryVms;
+                    itemSummaryGridView.DataBind();
+                }
+                else
+                {
+                    messageLabel.Text = "";
+                    itemSummaryGridView.DataSource = aItemSummaryVms;
+                    itemSummaryGridView.DataBind();
+                }
+
+
             }
+
             else
             {
-                itemSummaryGridView.DataSource = aItemManager.GetAllItemSummaryByCompanyAndCategory(Convert.ToInt32(companyDropDownList.SelectedValue), Convert.ToInt32(categoryDropDownList.SelectedValue));
-                itemSummaryGridView.DataBind();
+                List<ItemSummaryVM> aItemSummaryVms = new List<ItemSummaryVM>();
+
+                aItemSummaryVms = aItemManager.GetAllItemSummaryByCompanyAndCategory(Convert.ToInt32(companyDropDownList.SelectedValue), Convert.ToInt32(categoryDropDownList.SelectedValue));
+
+
+                if (aItemSummaryVms.Count == 0)
+                {
+                    messageLabel.Text = "No item found";
+                    itemSummaryGridView.DataSource = aItemSummaryVms;
+                    itemSummaryGridView.DataBind();
+                }
+                else
+                {
+                    messageLabel.Text = "";
+                    itemSummaryGridView.DataSource = aItemSummaryVms;
+                    itemSummaryGridView.DataBind();
+                }
             }
           
 
+        
         }
+
+        
+
+        
+           
 
        
     }

@@ -13,6 +13,15 @@ namespace StockManagementSystem.UI {
     public partial class CategorySetupUI {
         
         /// <summary>
+        /// categoryForm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlForm categoryForm;
+        
+        /// <summary>
         /// Label1 control.
         /// </summary>
         /// <remarks>
@@ -29,6 +38,15 @@ namespace StockManagementSystem.UI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox categoryNameTextBox;
+        
+        /// <summary>
+        /// nameErrorMessageLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label nameErrorMessageLabel;
         
         /// <summary>
         /// updateButton control.

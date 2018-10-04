@@ -33,7 +33,7 @@ namespace StockManagementSystem.Gateway
             //string querry = "Insert into Item_tbl (CategoryID,CompanyID,ItemName,ReorderLevel) values(" +
             //                aItem.CategoryId + "," + aItem.CompanyId + ",'" + aItem.ItemName + "'," + aItem.ReorderLevel +
             //                ")";
-            string querry = "Insert into Item_tbl (CategoryID,CompanyID,ItemName,ReorderLevel) values(@CategoryId,@CompanyId,@ItemName,@ReordeLevel)";
+            string querry = "Insert into Item_tbl (CategoryID,CompanyID,ItemName,ReorderLevel) values(@CategoryId,@CompanyId,@ItemName,@ReorderLevel)";
             SqlCommand cmd=new SqlCommand(querry,connection);
             cmd.Parameters.AddWithValue("CategoryId",aItem.CategoryId);
             cmd.Parameters.AddWithValue("CompanyId", aItem.CompanyId);

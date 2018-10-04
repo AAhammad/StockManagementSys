@@ -13,12 +13,12 @@ namespace StockManagementSystem.UI
         CompanyManager aCompanyManager = new CompanyManager();
         ItemManager aItemManager = new ItemManager();
         StockOutManager aStockOutManager=new StockOutManager();
-        List<StockOut> stockOuts = new List<StockOut>();
+        //List<StockOut> stockOuts = new List<StockOut>();
+        List<StockOutVM> stockOutsVms = new List<StockOutVM>();
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            reorderLevelTextBox.Text = String.Empty;
-            availableQuantityTextBox.Text = String.Empty;
+            
 
             if (!IsPostBack)
             {
@@ -26,83 +26,153 @@ namespace StockManagementSystem.UI
                 companyDropDownList.DataTextField = "CompanyName";
                 companyDropDownList.DataValueField = "CompanyId";
                 companyDropDownList.DataBind();
-                ListItem seletedItemCom = new ListItem("Select Company", "-1");
+                ListItem seletedItemCom = new ListItem("Select Company", "");
                 companyDropDownList.Items.Insert(0, seletedItemCom);
 
 
                 itemDropDownList.Enabled = false;
 
+                //sellButton.Enabled = false;
+                //damageButton.Enabled = false;
+                //lostButton.Enabled = false;
+
             }
 
+            messageLabel.Text = "";
+        }
 
+        private bool Validation()
+        {
+            bool retn = true;
+            if (string.IsNullOrEmpty(itemDropDownList.SelectedValue))
+            {
+                retn = false;
+                itemSelectErrorMessageLabel.Text = "Please select a Item";
+
+            }
+            else
+            {
+                itemSelectErrorMessageLabel.Text = String.Empty;
+            }
+            if (string.IsNullOrEmpty(companyDropDownList.SelectedValue))
+            {
+                retn = false;
+                companySelectErrorMessageLabel.Text = "Please select a Company";
+            }
+            else
+            {
+                companySelectErrorMessageLabel.Text = String.Empty;
+            }
+           
+            int n;
+            if (string.IsNullOrEmpty(stockOutQuantityTextBox.Text.Trim()))
+            {
+                retn = false;
+                stockOutQuantityErrorMessageLabel.Text = "Please enter a Stock Quantity";
+            }
+            else if (stockOutQuantityTextBox.Text.Trim().Length > 9)
+            {
+                retn = false;
+                stockOutQuantityErrorMessageLabel.Text = "Please enter no more than 9 digits";
+            }
+            else if (!int.TryParse(stockOutQuantityTextBox.Text.Trim(), out n))
+            {
+                retn = false;
+                stockOutQuantityErrorMessageLabel.Text = "Please enter a integer value";
+
+            }
+   
+           
+            else
+            {
+                stockOutQuantityErrorMessageLabel.Text = "";
+            }
+
+            return retn;
         }
 
         
         protected void addButton_Click(object sender, EventArgs e)
         {
-
-            StockOut aStockOut = new StockOut();
-            
-
-            aStockOut.CompanyId = Convert.ToInt32(companyDropDownList.SelectedItem.Value);
-            aStockOut.ItemId = Convert.ToInt32(itemDropDownList.SelectedItem.Value);
-
-            aStockOut.CompanyName = companyDropDownList.SelectedItem.Text;
-            aStockOut.ItemName = itemDropDownList.SelectedItem.Text;
-            aStockOut.StockOutQuantity = Convert.ToInt32(stockOutQuantityTextBox.Text);
-
-            Item aItem = new Item();
-            aItem = aItemManager.GetItemInfo(aStockOut.ItemId);
-
-
-            if (aItem.AvailableQuantity>=aStockOut.StockOutQuantity)
+            if (Validation())
             {
-                if (ViewState["StockOutItems"] != null)
-                {
-                    stockOuts = (List<StockOut>)ViewState["StockOutItems"];
-                }
 
-                if (stockOuts != null)
+
+                
+                StockOutVM aStockOutVm = new StockOutVM();
+
+
+                aStockOutVm.CompanyId = Convert.ToInt32(companyDropDownList.SelectedItem.Value);
+                aStockOutVm.ItemId = Convert.ToInt32(itemDropDownList.SelectedItem.Value);
+
+                aStockOutVm.CompanyName = companyDropDownList.SelectedItem.Text;
+                aStockOutVm.ItemName = itemDropDownList.SelectedItem.Text;
+                aStockOutVm.StockOutQuantity = Convert.ToInt32(stockOutQuantityTextBox.Text.Trim());
+
+                Item aItem = new Item();
+                aItem = aItemManager.GetItemInfo(aStockOutVm.ItemId);
+
+
+                if (aItem.AvailableQuantity >= aStockOutVm.StockOutQuantity)
                 {
-                    foreach (var item in stockOuts)
+                    if (ViewState["StockOutItems"] != null)
                     {
-                        if (item.ItemId == aStockOut.ItemId)
-                        {
-                            item.StockOutQuantity += aStockOut.StockOutQuantity;
-                            goto Next;
-                        }
+                        stockOutsVms = (List<StockOutVM>) ViewState["StockOutItems"];
                     }
 
+                    if (stockOutsVms != null)
+                    {
+                        foreach (var item in stockOutsVms)
+                        {
+                            if (item.ItemId == aStockOutVm.ItemId)
+                            {
+                                if (item.StockOutQuantity+aStockOutVm.StockOutQuantity>aItem.AvailableQuantity)
+                                {
+                                    messageLabel.Text = "Stock Out Quantity is larger than Available Quantity";
+                                }
+                                else
+                                {
+                                    item.StockOutQuantity += aStockOutVm.StockOutQuantity;
+                                }
+                             
+                                goto Next;
+                            }
+                        }
+
+                    }
+
+                    stockOutsVms.Add(aStockOutVm);
+
+                    Next:
+
+                    ViewState["StockOutItems"] = stockOutsVms;
+
+
+                    stockOutGridView.DataSource = stockOutsVms;
+                    stockOutGridView.DataBind();
+
+                    companyDropDownList.SelectedIndex = 0;
+                    itemDropDownList.SelectedIndex = 0;
+                    itemDropDownList.Enabled = false;
+                    stockOutQuantityTextBox.Text = String.Empty;
+                    //sellButton.Enabled = true;
+                    //damageButton.Enabled = true;
+                    //lostButton.Enabled = true;
+                    reorderLevelTextBox.Text = String.Empty;
+                    availableQuantityTextBox.Text = String.Empty;
+
                 }
 
-                stockOuts.Add(aStockOut);
+                else
+                {
+                    messageLabel.Text = "Stock Out Quantity is larger than Available Quantity";
 
-            Next:
-
-                ViewState["StockOutItems"] = stockOuts;
-
-
-                stockOutGridView.DataSource = stockOuts;
-                stockOutGridView.DataBind();
-
-                companyDropDownList.SelectedIndex = 0;
-                itemDropDownList.SelectedIndex = 0;
-                itemDropDownList.Enabled = false;
-                stockOutQuantityTextBox.Text = String.Empty;
-
+                    //companyDropDownList.SelectedIndex = 0;
+                    //itemDropDownList.SelectedIndex = 0;
+                    //itemDropDownList.Enabled = false;
+                }
 
             }
-
-            else
-            {
-                messageLabel.Text = "Stock Out Quantity is larger than Available Quantity";
-
-                companyDropDownList.SelectedIndex = 0;
-                itemDropDownList.SelectedIndex = 0;
-                itemDropDownList.Enabled = false;
-            }
-
-
 
         }
 
@@ -122,7 +192,7 @@ namespace StockManagementSystem.UI
                 itemDropDownList.DataValueField = "ItemId";
                 itemDropDownList.DataBind();
 
-                ListItem seletedItemItems = new ListItem("Select Item", "-1");
+                ListItem seletedItemItems = new ListItem("Select Item", "");
                 itemDropDownList.Items.Insert(0, seletedItemItems);
 
             }
@@ -152,24 +222,31 @@ namespace StockManagementSystem.UI
 
         protected void sellButton_Click(object sender, EventArgs e)
         {
-            List<StockOut> sOuts=new List<StockOut>();
-            sOuts = (List<StockOut>) ViewState["StockOutItems"];
+           
 
-            if (sOuts != null)
+            List<StockOutVM> sOutVms=new List<StockOutVM>();        
+            sOutVms = (List<StockOutVM>) ViewState["StockOutItems"];
+
+
+            if (sOutVms != null)
             {
-                foreach (var stockItem in sOuts)
+                foreach (var stockItem in sOutVms)
                 {
-                    stockItem.Flag = "sell";
-                    stockItem.StockOutDate =DateTime.Now;
-                    if (aStockOutManager.SaveStockOut(stockItem))
+                    StockOut aStockOut = new StockOut();
+
+                    aStockOut.ItemId = stockItem.ItemId;
+                    aStockOut.StockOutQuantity = stockItem.StockOutQuantity;
+                    aStockOut.Flag = "Sell";
+                    aStockOut.StockOutDate =DateTime.Now;
+                    if (aStockOutManager.SaveStockOut(aStockOut))
                     {
-                        messageLabel.Text = "saved";
+                        messageLabel.Text = "Saved";
 
                         Item aItem=new Item();
-                        aItem = aItemManager.GetItemInfo(stockItem.ItemId);
-                        int updatedValue = aItem.AvailableQuantity - stockItem.StockOutQuantity;
+                        aItem = aItemManager.GetItemInfo(aStockOut.ItemId);
+                        int updatedValue = aItem.AvailableQuantity - aStockOut.StockOutQuantity;
 
-                        aItemManager.UpdateAvailabelQuantity(stockItem.ItemId,updatedValue);
+                        aItemManager.UpdateAvailabelQuantity(aStockOut.ItemId, updatedValue);
 
                         stockOutGridView.DataSource = null;
                         stockOutGridView.DataBind();
@@ -177,7 +254,7 @@ namespace StockManagementSystem.UI
                     }
                     else
                     {
-                        messageLabel.Text = "not saved";
+                        messageLabel.Text = "Not Saved";
                     }
                 }
             }
@@ -190,24 +267,29 @@ namespace StockManagementSystem.UI
 
         protected void damageButton_Click(object sender, EventArgs e)
         {
-            List<StockOut> sOuts = new List<StockOut>();
-            sOuts = (List<StockOut>)ViewState["StockOutItems"];
+            List<StockOutVM> sOutVms = new List<StockOutVM>();
+            sOutVms = (List<StockOutVM>)ViewState["StockOutItems"];
 
-            if (sOuts!=null)
+            if (sOutVms!=null)
             {
-                foreach (var stockItem in sOuts)
+                foreach (var stockItem in sOutVms)
                 {
-                    stockItem.Flag = "damage";
-                    stockItem.StockOutDate = DateTime.Now;
-                    if (aStockOutManager.SaveStockOut(stockItem))
+                    StockOut aStockOut = new StockOut();
+
+                    aStockOut.ItemId = stockItem.ItemId;
+                    aStockOut.StockOutQuantity = stockItem.StockOutQuantity;
+                    aStockOut.Flag = "Damage";
+                    aStockOut.StockOutDate = DateTime.Now;
+
+                    if (aStockOutManager.SaveStockOut(aStockOut))
                     {
                         messageLabel.Text = "saved";
 
                         Item aItem = new Item();
-                        aItem = aItemManager.GetItemInfo(stockItem.ItemId);
-                        int updatedValue = aItem.AvailableQuantity - stockItem.StockOutQuantity;
+                        aItem = aItemManager.GetItemInfo(aStockOut.ItemId);
+                        int updatedValue = aItem.AvailableQuantity - aStockOut.StockOutQuantity;
 
-                        aItemManager.UpdateAvailabelQuantity(stockItem.ItemId, updatedValue);
+                        aItemManager.UpdateAvailabelQuantity(aStockOut.ItemId, updatedValue);
 
                         stockOutGridView.DataSource = null;
                         stockOutGridView.DataBind();
@@ -228,23 +310,29 @@ namespace StockManagementSystem.UI
 
         protected void lostButton_Click(object sender, EventArgs e)
         {
-            List<StockOut> sOuts = new List<StockOut>();
-            sOuts = (List<StockOut>)ViewState["StockOutItems"];
-            if (sOuts!=null)
+            List<StockOutVM> sOutVms = new List<StockOutVM>();
+            sOutVms = (List<StockOutVM>)ViewState["StockOutItems"];
+
+            if (sOutVms != null)
             {
-                foreach (var stockItem in sOuts)
+                foreach (var stockItem in sOutVms)
                 {
-                    stockItem.Flag = "lost";
-                    stockItem.StockOutDate = DateTime.Now;
-                    if (aStockOutManager.SaveStockOut(stockItem))
+                    StockOut aStockOut = new StockOut();
+
+                    aStockOut.ItemId = stockItem.ItemId;
+                    aStockOut.StockOutQuantity = stockItem.StockOutQuantity;
+                    aStockOut.Flag = "Lost";
+                    aStockOut.StockOutDate = DateTime.Now;
+
+                    if (aStockOutManager.SaveStockOut(aStockOut))
                     {
                         messageLabel.Text = "saved";
 
                         Item aItem = new Item();
-                        aItem = aItemManager.GetItemInfo(stockItem.ItemId);
-                        int updatedValue = aItem.AvailableQuantity - stockItem.StockOutQuantity;
+                        aItem = aItemManager.GetItemInfo(aStockOut.ItemId);
+                        int updatedValue = aItem.AvailableQuantity - aStockOut.StockOutQuantity;
 
-                        aItemManager.UpdateAvailabelQuantity(stockItem.ItemId, updatedValue);
+                        aItemManager.UpdateAvailabelQuantity(aStockOut.ItemId, updatedValue);
 
                         stockOutGridView.DataSource = null;
                         stockOutGridView.DataBind();

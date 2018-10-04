@@ -14,25 +14,52 @@ namespace StockManagementSystem.UI
             categorySetupGridView.DataBind();
 
             updateButton.Enabled = false;
+            categoryMessageLabel.Text = "";
         }
 
-
-        protected void categorySaveButton_Click(object sender, EventArgs e)
+        private bool Validation()
         {
-           Category aCategory=new Category();
-            aCategory.CategoryName = categoryNameTextBox.Text;
-
-            if (aCategoryManager.IsCategoryAllreadyExist(aCategory))
+            bool retn= true;
+            if (string.IsNullOrEmpty(categoryNameTextBox.Text.Trim()))
             {
-                categoryMessageLabel.Text = aCategory.CategoryName+" Allready Exist ";
+                retn = false;
+                nameErrorMessageLabel.Text = "Please enter a Category Name";
             }
+            else if (categoryNameTextBox.Text.Trim().Length>49)
+            {
+                retn = false;
+                nameErrorMessageLabel.Text = "Please enter no more than 49 characters";
+            }
+          
             else
             {
-                categoryMessageLabel.Text = "";
-                categoryMessageLabel.Text=aCategoryManager.SaveCategoryInfo(aCategory);
-                categorySetupGridView.DataSource = aCategoryManager.GetAllCategoriesInfo();
-                categorySetupGridView.DataBind();
+                nameErrorMessageLabel.Text = "";
+                
 
+            }
+            return retn;
+        }
+        protected void categorySaveButton_Click(object sender, EventArgs e)
+        {
+            if (Validation())
+            {
+
+
+                Category aCategory = new Category();
+                aCategory.CategoryName = categoryNameTextBox.Text.Trim();
+
+                if (aCategoryManager.IsCategoryAllreadyExist(aCategory))
+                {
+                    categoryMessageLabel.Text = aCategory.CategoryName + " Allready Exist ";
+                }
+                else
+                {
+                    categoryMessageLabel.Text = "";
+                    categoryMessageLabel.Text = aCategoryManager.SaveCategoryInfo(aCategory);
+                    categorySetupGridView.DataSource = aCategoryManager.GetAllCategoriesInfo();
+                    categorySetupGridView.DataBind();
+
+                }
             }
         }
 
@@ -55,14 +82,24 @@ namespace StockManagementSystem.UI
         {
             Category aCategory = new Category();
             aCategory.CategoryId = Convert.ToInt32(categoryIdHiddenField.Value);
-            aCategory.CategoryName = categoryNameTextBox.Text;
-            categoryMessageLabel.Text = aCategoryManager.UpdateCategoryInfo(aCategory);
+            aCategory.CategoryName = categoryNameTextBox.Text.Trim();
+
+            if (aCategoryManager.IsCategoryAllreadyExist(aCategory))
+            {
+                categoryMessageLabel.Text = aCategory.CategoryName + " Allready Exist ";
+            }
+            else
+            {
+                categoryMessageLabel.Text = aCategoryManager.UpdateCategoryInfo(aCategory);
+            }
+            
 
             categoryIdHiddenField.Value = null;
             categorySetupGridView.DataSource = aCategoryManager.GetAllCategoriesInfo();
             categorySetupGridView.DataBind();
         }
        
+        
 
     }
 }

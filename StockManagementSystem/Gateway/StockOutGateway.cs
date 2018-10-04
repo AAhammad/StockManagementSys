@@ -36,7 +36,7 @@ namespace StockManagementSystem.Gateway
             
         }
 
-        public List<StockOut> GetAllItemBetweenTwoDate(DateTime fromDateTime, DateTime toDateTime)
+        public List<StockOutVM> GetAllItemBetweenTwoDate(DateTime fromDateTime, DateTime toDateTime)
         {
             SqlConnection connection = new SqlConnection(connectionString);
             connection.Open();
@@ -47,11 +47,11 @@ namespace StockManagementSystem.Gateway
             cmd.Parameters.AddWithValue("ToDate", toDateTime);
 
             SqlDataReader reader = cmd.ExecuteReader();
-            List<StockOut> aStockOuts = new List<StockOut>();
+            List<StockOutVM> aStockOuts = new List<StockOutVM>();
 
             while (reader.Read())
             {
-                 StockOut aStockOut=new StockOut();
+                 StockOutVM aStockOut=new StockOutVM();
 
                 aStockOut.ItemName = (string)reader["Item Name"];
                 aStockOut.StockOutQuantity = (int) reader["Sales Quantity"];

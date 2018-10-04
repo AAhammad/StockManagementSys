@@ -10,7 +10,7 @@
 namespace StockManagementSystem.UI {
     
     
-    public partial class Index {
+    public partial class MasterPageUI {
         
         /// <summary>
         /// head control.

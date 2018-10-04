@@ -1,22 +1,82 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/UI/Index.Master" CodeBehind="CategorySetupUI.aspx.cs" Inherits="StockManagementSystem.UI.CategorySetupUI" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CategorySetupUI.aspx.cs" Inherits="StockManagementSystem.UI.CategorySetupUI" %>
 
+<!DOCTYPE html>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <style type="text/css">
+        .auto-style3 {
+            height: 31px;
+            text-align: right;
+        }
+        .auto-style4 {
+            text-align: right;
+        }
+        .auto-style5 {
+            height: 31px;
+            width: 140px;
+            text-align: right;
+        }
+        .auto-style6 {
+            width: 140px;
+            text-align: right;
+        }
+        .auto-style7 {
+            text-align: center;
+            width: 1001px;
+            height: 442px;
+        }
+        .auto-style8 {
+            text-align: center;
+            margin-left: 200px;
+        }
+    </style>
     
-    
+    <style>
+        Label.error {
+            color: red;
+            font-style: italic; 
+        }
+        .auto-style9 {
+            height: 31px;
+            width: 255px;
+            text-align: left;
+        }
+        .auto-style10 {
+            width: 255px;
+            text-align: right;
+        }
+        .auto-style11 {
+            width: 255px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <form id="categoryForm" runat="server">
     <div class="auto-style7">
     
-     
-        <table style="width: 23%; margin-left: 505px; height: 96px;">
+        <div class="auto-style8">
+    
+    
+        <br />
+        <br />
+        <br />
+        </div>
+        <table style="width: 89%; margin-left: 89px; height: 96px;">
             <tr>
                 <td class="auto-style3">
     
-        <asp:Label ID="Label1" runat="server" Text="Name"></asp:Label>
+        <asp:Label ID="Label1" for="categoryNameTextBox" runat="server" Text="Name"></asp:Label>
                 </td>
                 <td class="auto-style5">
-        <asp:TextBox ID="categoryNameTextBox" runat="server" Height="16px" Width="139px"></asp:TextBox>
+        <asp:TextBox ID="categoryNameTextBox" name="categoryNameTextBox" runat="server" Height="16px" Width="139px"></asp:TextBox>
+    
+                </td>
+                
+                <td class="auto-style9">
+                    <asp:Label ID="nameErrorMessageLabel" runat="server" ForeColor="#990000" style="text-align: left"></asp:Label>
     
                 </td>
                 
@@ -25,6 +85,8 @@
                 <td class="auto-style4">&nbsp;</td>
                 <td class="auto-style6">&nbsp;</td>
                
+                <td class="auto-style11">&nbsp;</td>
+               
             </tr>
             <tr>
                 <td class="auto-style4">&nbsp;</td>
@@ -32,12 +94,22 @@
                     <asp:Button ID="updateButton" runat="server" OnClick="updateButton_Click1" Text="Update" />
         <asp:Button ID="categorySaveButton" runat="server" style="margin-left: 0" Text="Save" Width="59px" OnClick="categorySaveButton_Click" />
                 </td>
+               
+                <td class="auto-style10">
+                    &nbsp;</td>
+               
             </tr>
          
         </table>
-      
+        <div class="auto-style8">
+            <br />
+        </div>
         <div class="auto-style7">
     
+           
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    
+           
                 <asp:Label ID="categoryMessageLabel" runat="server" style="text-align: center" ForeColor="#CC0000"></asp:Label>
                 <br />
             <br />
@@ -63,14 +135,33 @@
                 
             </asp:GridView>
     
-      <asp:HiddenField ID="categoryIdHiddenField" runat="server" />
+                <asp:HiddenField ID="categoryIdHiddenField" runat="server" />
     
+    </div>         
     </div>
-    </div>
-       
-    
-    
+    </form>
+    <script src="../Scripts/jquery-3.3.1.min.js"></script>
+    <script src="../Scripts/jquery.validate.min.js"></script>
+    <script>
+        $(document).ready(function () {
 
-</asp:Content>
+            $("#categoryForm").validate({
+                rules: {
+                    categoryNameTextBox: {
+                        required: true,
+                        maxlength: 49
+                    }
 
-    
+                },
+                messages: {
+                    categoryNameTextBox: {
+                        required: "Please enter your Category Name",
+                        maxlength:"please enter no more than 49 characters"
+        }
+                   
+                }
+            });
+        });
+    </script>
+</body>
+</html>

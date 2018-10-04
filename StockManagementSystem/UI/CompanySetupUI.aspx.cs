@@ -19,24 +19,48 @@ namespace StockManagementSystem.UI
             companyInfoGridView.DataBind();
         }
 
-        protected void companySaveButton_Click(object sender, EventArgs e)
+        private bool Validation()
         {
-            Company aCompany=new Company();
-            aCompany.CompanyName = companyNameTextBox.Text;
-
-            if (aCompanyManager.IsCompanyAllReadyExist(aCompany))
+            bool retn = true;
+            if (string.IsNullOrEmpty(companyNameTextBox.Text.Trim()))
             {
-                messageLabel.Text = aCompany.CompanyName+" Allready Exist ";
+                retn = false;
+                nameErrorMessageLabel.Text = "Please enter a Company Name";
+            }
+            else if (companyNameTextBox.Text.Trim().Length>49)
+            {
+                retn = false;
+                nameErrorMessageLabel.Text = "Please enter no more than 49 digits";
             }
             else
             {
-                messageLabel.Text = "";
-                messageLabel.Text=aCompanyManager.SaveCompanyInfo(aCompany);
-                companyInfoGridView.DataSource = aCompanyManager.GetAllCompanyInfo();
-                companyInfoGridView.DataBind();
-                
+                nameErrorMessageLabel.Text = string.Empty;
             }
-            
+            return retn;
+        }
+        protected void companySaveButton_Click(object sender, EventArgs e)
+        {
+            if (Validation())
+            {
+
+
+                Company aCompany = new Company();
+                aCompany.CompanyName = companyNameTextBox.Text.Trim();
+
+                if (aCompanyManager.IsCompanyAllReadyExist(aCompany))
+                {
+                    messageLabel.Text = aCompany.CompanyName + " Allready Exist ";
+                }
+                else
+                {
+                    messageLabel.Text = "";
+                    messageLabel.Text = aCompanyManager.SaveCompanyInfo(aCompany);
+                    companyInfoGridView.DataSource = aCompanyManager.GetAllCompanyInfo();
+                    companyInfoGridView.DataBind();
+
+                }
+            }
+
         }
 
         

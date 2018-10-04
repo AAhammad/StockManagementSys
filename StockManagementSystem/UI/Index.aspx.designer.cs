@@ -11,7 +11,7 @@ namespace StockManagementSystem.UI
 {
 
 
-    public partial class Home
+    public partial class WebForm2
     {
     }
 }

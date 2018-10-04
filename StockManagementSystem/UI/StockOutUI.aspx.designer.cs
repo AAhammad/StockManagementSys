@@ -13,6 +13,15 @@ namespace StockManagementSystem.UI {
     public partial class StockOutUI {
         
         /// <summary>
+        /// stockOutForm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlForm stockOutForm;
+        
+        /// <summary>
         /// Label1 control.
         /// </summary>
         /// <remarks>
@@ -29,6 +38,15 @@ namespace StockManagementSystem.UI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList companyDropDownList;
+        
+        /// <summary>
+        /// companySelectErrorMessageLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label companySelectErrorMessageLabel;
         
         /// <summary>
         /// Label2 control.
@@ -49,6 +67,15 @@ namespace StockManagementSystem.UI {
         protected global::System.Web.UI.WebControls.DropDownList itemDropDownList;
         
         /// <summary>
+        /// itemSelectErrorMessageLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label itemSelectErrorMessageLabel;
+        
+        /// <summary>
         /// Label3 control.
         /// </summary>
         /// <remarks>
@@ -65,6 +92,15 @@ namespace StockManagementSystem.UI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox reorderLevelTextBox;
+        
+        /// <summary>
+        /// reorderLevelErrorMessageLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label reorderLevelErrorMessageLabel;
         
         /// <summary>
         /// Label4 control.
@@ -85,6 +121,15 @@ namespace StockManagementSystem.UI {
         protected global::System.Web.UI.WebControls.TextBox availableQuantityTextBox;
         
         /// <summary>
+        /// availableQuantityErrorMessageLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label availableQuantityErrorMessageLabel;
+        
+        /// <summary>
         /// Label5 control.
         /// </summary>
         /// <remarks>
@@ -101,6 +146,15 @@ namespace StockManagementSystem.UI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox stockOutQuantityTextBox;
+        
+        /// <summary>
+        /// stockOutQuantityErrorMessageLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label stockOutQuantityErrorMessageLabel;
         
         /// <summary>
         /// addButton control.
@@ -148,15 +202,6 @@ namespace StockManagementSystem.UI {
         protected global::System.Web.UI.WebControls.Button lostButton;
         
         /// <summary>
-        /// itemIdHiddenField control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField itemIdHiddenField;
-        
-        /// <summary>
         /// messageLabel control.
         /// </summary>
         /// <remarks>
@@ -173,5 +218,14 @@ namespace StockManagementSystem.UI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField availableQuantityHiddenField;
+        
+        /// <summary>
+        /// itemIdHiddenField control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField itemIdHiddenField;
     }
 }

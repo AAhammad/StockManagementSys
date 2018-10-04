@@ -43,6 +43,9 @@
     </style>
 </head>
 <body>
+<hr/>
+<h2 style="text-align: center">Add Company</h2>
+<hr/>
     <form id="companyForm" runat="server">
     <div style="height: 365px; width: 961px; text-align: center;">
         <br />

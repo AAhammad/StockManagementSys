@@ -1,9 +1,8 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CategorySetupUI.aspx.cs" Inherits="StockManagementSystem.UI.CategorySetupUI" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/UI/MasterPageUI.Master" CodeBehind="CategorySetupUI.aspx.cs" Inherits="StockManagementSystem.UI.CategorySetupUI" %>
 
-<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+ <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+
     <title></title>
     <style type="text/css">
         .auto-style3 {
@@ -52,9 +51,38 @@
             text-align: left;
         }
     </style>
-</head>
-<body>
-    <form id="categoryForm" runat="server">
+ <%--     <script src="../Scripts/jquery-3.3.1.min.js"></script>
+    <script src="../Scripts/jquery.validate.min.js"></script>--%>
+    <script>
+        $(document).ready(function () {
+
+            $("#form1").validate({
+                rules: {
+                    <%= categoryNameTextBox.UniqueID %> : {
+                        required: true,
+                        maxlength: 49
+                    }
+
+                },
+                messages: {
+                    <%= categoryNameTextBox.UniqueID %> : {
+                        required: "Please enter your Category Name",
+                        maxlength: "please enter no more than 49 characters"
+                    }
+
+                }
+            });
+        });
+    </script>
+     
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentBody" runat="server">
+    <fieldset >
+        <hr/>
+       <h2 style="text-align: center">Add and View Category</h2> 
+        <hr/>
+ 
     <div class="auto-style7">
     
         <div class="auto-style8">
@@ -64,14 +92,14 @@
         <br />
         <br />
         </div>
-        <table style="width: 89%; margin-left: 89px; height: 96px;">
+        <table style="width: 89%; margin-left: 0px; height: 96px;">
             <tr>
                 <td class="auto-style3">
     
         <asp:Label ID="Label1" for="categoryNameTextBox" runat="server" Text="Name"></asp:Label>
                 </td>
                 <td class="auto-style5">
-        <asp:TextBox ID="categoryNameTextBox" name="categoryNameTextBox" runat="server" Height="16px" Width="139px"></asp:TextBox>
+        <asp:TextBox ID="categoryNameTextBox" name="categoryNameTextBox" runat="server" Height="20px" Width="143px"></asp:TextBox>
     
                 </td>
                 
@@ -107,13 +135,10 @@
         <div class="auto-style7">
     
            
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    
-           
-                <asp:Label ID="categoryMessageLabel" runat="server" style="text-align: center" ForeColor="#CC0000"></asp:Label>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="categoryMessageLabel" runat="server" style="text-align: center" ForeColor="#CC0000"></asp:Label>
                 <br />
             <br />
-            <asp:GridView ID="categorySetupGridView" runat="server" AutoGenerateColumns="False" style="margin-left: 564px; text-align: center;">
+            <asp:GridView ID="categorySetupGridView" runat="server" AutoGenerateColumns="False" style="margin-left: 451px; text-align: center;">
                 <Columns>
                  <asp:TemplateField HeaderText="SL" >
                    <ItemTemplate >
@@ -139,29 +164,8 @@
     
     </div>         
     </div>
-    </form>
-    <script src="../Scripts/jquery-3.3.1.min.js"></script>
-    <script src="../Scripts/jquery.validate.min.js"></script>
-    <script>
-        $(document).ready(function () {
+    
 
-            $("#categoryForm").validate({
-                rules: {
-                    categoryNameTextBox: {
-                        required: true,
-                        maxlength: 49
-                    }
-
-                },
-                messages: {
-                    categoryNameTextBox: {
-                        required: "Please enter your Category Name",
-                        maxlength:"please enter no more than 49 characters"
-        }
-                   
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+       
+   </fieldset>
+    </asp:Content>

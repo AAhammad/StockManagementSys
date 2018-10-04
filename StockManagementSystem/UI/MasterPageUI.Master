@@ -17,13 +17,15 @@
 
     <!-- Custom styles for this template-->
     <link href="../css/sb-admin.css" rel="stylesheet" />
+      <script src="../Scripts/jquery-3.3.1.min.js"></script>
+    <script src="../Scripts/jquery.validate.min.js"></script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body id="page-top">
     <form id="form1" runat="server">
 
-        <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+        <nav class="navbar navbar-expand navbar-dark bg-info static-top">
 
             <a class="navbar-brand mr-1" href="Index.aspx">Stock Management System</a>
 
@@ -38,16 +40,17 @@
         </nav>
         <div id="wrapper">
             <ul class="sidebar navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="ItemSetupUI.aspx"><span>Item Setup</span></a>
-                </li>
-
+               
                 <li class="nav-item">
                     <a class="nav-link" href="CategorySetupUI.aspx"><span>Category Setup</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="CompanySetupUI.aspx"><span>Company Setup</span></a>
                 </li>
+                 <li class="nav-item">
+                    <a class="nav-link" href="ItemSetupUI.aspx"><span>Item Setup</span></a>
+                </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="StockInUI.aspx"><span>Stock In</span></a>
                 </li>
@@ -64,7 +67,7 @@
             <div id="content-wrapper">
                 <div class="container-fluid">
                     <div>
-                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                        <asp:ContentPlaceHolder ID="ContentBody" runat="server">
                         </asp:ContentPlaceHolder>
                     </div>
                 </div>
@@ -78,7 +81,6 @@
             </footer>
         </div>
 
-    </form>
     <!-- Bootstrap core JavaScript-->
     <script src="../vendor/jquery/jquery.min.js"></script>
     <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -88,5 +90,6 @@
 
     <!-- Custom scripts for all pages-->
     <script src="../js/sb-admin.min.js"></script>
+            </form>
 </body>
 </html>

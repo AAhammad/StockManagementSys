@@ -1,9 +1,6 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ItemSetupUI.aspx.cs" Inherits="StockManagementSystem.UI.ItemSetupUI" %>
-
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/UI/MasterPageUI.Master" CodeBehind="ItemSetupUI.aspx.cs" Inherits="StockManagementSystem.UI.ItemSetupUI" %>
+    
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title></title>
     <style type="text/css">
         .auto-style1 {
@@ -26,9 +23,42 @@
             font-style: italic;
         }
     </style>
-</head>
-<body>
-    <form id="itemForm" runat="server">
+     <script>
+         $(document).ready(function () {
+             $("#form1").validate({
+                 rules: {
+                     categoryDropDownList: "required",
+
+                     companyDropDownList: "required",
+
+                     itemNameTextBox: {
+                         required: true,
+                         maxlength: 49
+                     },
+
+                     reorderTextBox: {
+                         required: true,
+                         digits: true,
+                         maxlength: 9
+                     }
+
+                 },
+                 messages: {
+                     reorderTextBox: {
+                         maxlength: "Please enter no more than 9 digits.	"
+                     }
+                 }
+             });
+
+         });
+
+    </script>
+
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentBody" runat="server">
+
+   
         <div>
 
             <br />
@@ -105,38 +135,7 @@
 
         </div>
 
-    </form>
-    <script src="../Scripts/jquery-3.3.1.min.js"></script>
-    <script src="../Scripts/jquery.validate.js"></script>
-    <script>
-        $(document).ready(function () {
-            $("#itemForm").validate({
-                rules: {
-                    categoryDropDownList: "required",
 
-                    companyDropDownList: "required",
-
-                    itemNameTextBox: {
-                        required: true,
-                        maxlength: 49
-                    },
-
-                    reorderTextBox: {
-                        required: true,
-                        digits: true,
-                        maxlength: 9
-                    }
-
-                },
-                messages: {
-                    reorderTextBox: {
-                        maxlength: "Please enter no more than 9 digits.	"
-                    }
-                }
-            });
-
-        });
-
-    </script>
-</body>
-</html>
+   
+   
+</asp:Content>

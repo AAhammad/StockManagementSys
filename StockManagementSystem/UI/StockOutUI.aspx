@@ -1,9 +1,7 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="StockOutUI.aspx.cs" Inherits="StockManagementSystem.UI.StockOutUI" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/UI/MasterPageUI.Master" CodeBehind="StockOutUI.aspx.cs" Inherits="StockManagementSystem.UI.StockOutUI" %>
 
-<!DOCTYPE html>
+ <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
     <title></title>
     <style type="text/css">
         
@@ -25,7 +23,7 @@
 
         .auto-style10 {
             text-align: justify;
-            margin-left: 180px;
+            margin-left: 20px;
             width: 596px;
         }
     </style>
@@ -74,10 +72,13 @@
             margin-left: 253px;
         }
         </style>
-</head>
-<body style="text-align: center">
-    <form id="stockOutForm" runat="server">
-        <table align="left" class="auto-style7" style="margin-right: 146px; height: 170px; width: 816px; margin-left: 166px;">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentBody" runat="server">
+
+      <hr/>
+       <h2 style="text-align: center">Stock Out</h2> 
+        <hr/>
+        <table align="left" class="auto-style7" style="margin-right: 146px; height: 170px; width: 816px; margin-left: 33px;">
             <tr>
                 <td class="auto-style31">
                     <asp:Label ID="Label1" runat="server" Text="Company"></asp:Label>
@@ -163,7 +164,7 @@
 
             <br />
 
-            <asp:GridView ID="stockOutGridView" runat="server" AutoGenerateColumns="False" Height="141px" Style="margin-left: 229px; text-align: center;" Width="391px" CellPadding="4" ForeColor="#333333" GridLines="None">
+            <asp:GridView ID="stockOutGridView" runat="server" AutoGenerateColumns="False" Height="141px" Style="margin-left: 39px; text-align: center;" Width="391px" CellPadding="4" ForeColor="#333333" GridLines="None">
                 <AlternatingRowStyle BackColor="White" />
                 <Columns>
                     <asp:TemplateField HeaderText="SL">
@@ -223,7 +224,7 @@
             <asp:HiddenField ID="availableQuantityHiddenField" runat="server" />
             <asp:HiddenField ID="itemIdHiddenField" runat="server" />
         </div>
-    </form>
+   
     <script src="../Scripts/jquery-3.3.1.min.js"></script>
     <script src="../Scripts/jquery.validate.js"></script>
     <%--<script>
@@ -245,5 +246,5 @@
             });
         });
     </script>--%>
-</body>
-</html>
+</asp:Content>
+

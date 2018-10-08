@@ -23,7 +23,7 @@
     </asp:ContentPlaceHolder>
 </head>
 <body id="page-top">
-    <form id="form1" runat="server">
+    
 
         <nav class="navbar navbar-expand navbar-dark bg-info static-top">
 
@@ -66,10 +66,12 @@
             </ul>
             <div id="content-wrapper">
                 <div class="container-fluid">
+                    <form id="form1" runat="server">
                     <div>
                         <asp:ContentPlaceHolder ID="ContentBody" runat="server">
                         </asp:ContentPlaceHolder>
                     </div>
+                    </form>
                 </div>
             </div>
             <footer class="sticky-footer">
@@ -90,6 +92,6 @@
 
     <!-- Custom scripts for all pages-->
     <script src="../js/sb-admin.min.js"></script>
-            </form>
+            
 </body>
 </html>

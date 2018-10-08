@@ -1,9 +1,7 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="StockInUI.aspx.cs" Inherits="StockManagementSystem.UI.StockInUI" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/UI/MasterPageUI.Master" CodeBehind="StockInUI.aspx.cs" Inherits="StockManagementSystem.UI.StockInUI" %>
 
-<!DOCTYPE html>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
     <title></title>
     <style type="text/css">
         .auto-style1 {
@@ -34,9 +32,12 @@
             width: 133px;
         }
     </style>
-</head>
-<body>
-    <form id="stockInForm" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentBody" runat="server">
+
+     <hr/>
+       <h2 style="text-align: center">Stock In</h2> 
+        <hr/>
         <p class="auto-style4">
             <br />
             <table style="width: 103%; margin-left: 2px; height: 185px;" align="center">
@@ -74,7 +75,7 @@
                         <asp:Label ID="Label4" runat="server" Text="Reorder Level"></asp:Label>
                     </td>
                     <td class="auto-style7">
-                        <asp:TextBox ID="reoderLevelTextBox" name="reoderLevelTextBox" runat="server" Width="135px" ReadOnly="True"></asp:TextBox>
+                        <asp:TextBox ID="reoderLevelTextBox" name="reoderLevelTextBox" runat="server" Width="135px" ReadOnly="True">read only</asp:TextBox>
                     </td>
 
                     <td class="auto-style6">
@@ -87,7 +88,7 @@
                         <asp:Label ID="Label5" runat="server" Text="Available Quantity"></asp:Label>
                     </td>
                     <td class="auto-style7">
-                        <asp:TextBox ID="avilableQuantityTextBox" name="avilableQuantityTextBox" runat="server" Width="136px" ReadOnly="True"></asp:TextBox>
+                        <asp:TextBox ID="avilableQuantityTextBox"  name="avilableQuantityTextBox" runat="server"  Width="136px" ReadOnly="True">read only</asp:TextBox>
                     </td>
 
                     <td class="auto-style6">
@@ -133,7 +134,7 @@
                     <br style="text-align: left" />
                 </div>
             </p>
-    </form>
+
     <script src="../Scripts/jquery-3.3.1.min.js"></script>
     <script src="../Scripts/jquery.validate.min.js"></script>
     <script>
@@ -159,5 +160,5 @@
             });
         });
     </script>
-</body>
-</html>
+</asp:Content>
+

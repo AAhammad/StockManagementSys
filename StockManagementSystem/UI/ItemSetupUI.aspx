@@ -22,6 +22,19 @@
             color: red;
             font-style: italic;
         }
+        .auto-style4 {
+            text-align: right;
+            width: 420px;
+            height: 29px;
+        }
+        .auto-style5 {
+            text-align: right;
+            width: 163px;
+            height: 29px;
+        }
+        .auto-style6 {
+            height: 29px;
+        }
     </style>
      <script>
          $(document).ready(function () {
@@ -60,10 +73,12 @@
 
    
         <div>
-
+            <hr/>
+       <h2 style="text-align: center">Item Setup</h2> 
+        <hr/>
             <br />
 
-            <table style="width: 100%; margin-left: 188px;" align="center">
+            <table style="width: 100%; margin-left: 36px;" align="center">
                 <tr>
                     <td class="auto-style1">
                         <asp:Label ID="Label1" for="categoryDropDownList" runat="server" Text=" Category"></asp:Label>
@@ -104,13 +119,13 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style1">
+                    <td class="auto-style4">
                         <asp:Label ID="Label4" runat="server" Text="Reorder Level"></asp:Label>
                     </td>
-                    <td class="auto-style2">
+                    <td class="auto-style5">
                         <asp:TextBox ID="reorderTextBox" name="reorderTextBox" runat="server" Width="151px">0</asp:TextBox>
                     </td>
-                    <td>
+                    <td class="auto-style6">
                         <asp:Label ID="reorderLevelErrorMessageLabel" runat="server" ForeColor="#990000"></asp:Label>
                     </td>
                 </tr>

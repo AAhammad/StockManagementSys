@@ -36,6 +36,9 @@
     </style>
 </head>
 <body>
+     <hr/>
+       <h2 style="text-align: center">View Sales between two date</h2> 
+        <hr/>
     <form id="viewSalesForm" runat="server">
         <div>
 

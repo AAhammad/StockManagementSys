@@ -1,10 +1,8 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CompanySetupUI.aspx.cs" Inherits="StockManagementSystem.UI.CompanySetupUI1" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true"  MasterPageFile="~/UI/MasterPageUI.Master" CodeBehind="CompanySetupUI.aspx.cs" Inherits="StockManagementSystem.UI.CompanySetupUI1" %>
 
-<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
+ <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+   
     <style type="text/css">
         .auto-style1 {
             text-align: right;
@@ -41,12 +39,37 @@
             height: 36px;
         }
     </style>
-</head>
-<body>
+      <script src="../Scripts/jquery-3.3.1.min.js"></script>
+    <script src="../Scripts/jquery.validate.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            $("#form1").validate({
+                rules: {
+                    <%=companyNameTextBox.UniqueID%>: {
+                        required: true,
+                        maxlength: 49
+                    }
+
+                },
+                messages: {
+                     <%=companyNameTextBox.UniqueID%>: {
+                        required: "Please enter Company Name",
+                        maxlength: "please enter no more than 49 characters"
+                    }
+
+                }
+            });
+        });
+    </script>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentBody" runat="server">
+
+
 <hr/>
 <h2 style="text-align: center">Add Company</h2>
 <hr/>
-    <form id="companyForm" runat="server">
+    
     <div style="height: 365px; width: 961px; text-align: center;">
         <br />
         <br />
@@ -88,7 +111,7 @@
            <br />
 
       
-        <asp:GridView ID="companyInfoGridView" runat="server" AutoGenerateColumns="False" style="margin-left: 484px; text-align: center;" Height="200px" HorizontalAlign="Center" Width="297px">
+        <asp:GridView ID="companyInfoGridView" runat="server" AutoGenerateColumns="False" style="margin-left: 440px; text-align: center;" Height="200px" HorizontalAlign="Center" Width="297px">
             <Columns>
                  <asp:TemplateField HeaderText="SL" >
                    <ItemTemplate >
@@ -106,29 +129,8 @@
 
       
     </div>
-    </form>
-     <script src="../Scripts/jquery-3.3.1.min.js"></script>
-    <script src="../Scripts/jquery.validate.min.js"></script>
-    <script>
-        $(document).ready(function () {
+ 
+    
 
-            $("#companyForm").validate({
-                rules: {
-                    companyNameTextBox: {
-                        required: true,
-                        maxlength: 49
-                    }
+</asp:Content>
 
-                },
-                messages: {
-                    companyNameTextBox: {
-                        required:"Please enter Company Name",
-                        maxlength:"please enter no more than 49 characters"
-                    } 
-
-                }
-            });
-        });
-    </script>
-</body>
-</html>

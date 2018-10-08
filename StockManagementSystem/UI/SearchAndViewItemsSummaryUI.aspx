@@ -1,9 +1,7 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SearchAndViewItemsSummaryUI.aspx.cs" Inherits="StockManagementSystem.UI.SearchAndViewItemsSummaryUI" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/UI/MasterPageUI.Master" CodeBehind="SearchAndViewItemsSummaryUI.aspx.cs" Inherits="StockManagementSystem.UI.SearchAndViewItemsSummaryUI" %>
 
-<!DOCTYPE html>
+ <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
     <title></title>
     <style type="text/css">
         .auto-style2 {
@@ -21,13 +19,16 @@
             font-style: italic;
         }
     </style>--%>
-</head>
-<body>
-    <form id="form1" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentBody" runat="server">
+
+  
     <div>
-    
+    <hr/>
+       <h2 style="text-align: center">Search and View Items Summary</h2> 
+        <hr/>
         <br />
-        <table style="width:53%; height: 83px;">
+        <table style="width:53%; height: 83px; margin-left: 55px;">
             <tr>
                 <td class="auto-style2">
             <asp:Label ID="Label1" runat="server" Text="Company"></asp:Label>
@@ -66,7 +67,7 @@
             <br />
             </div>
        
-        <asp:GridView ID="itemSummaryGridView" runat="server" AutoGenerateColumns="False" Height="142px" style="margin-left: 286px; text-align: center;" Width="647px" CellPadding="4" ForeColor="#333333" GridLines="None">
+        <asp:GridView ID="itemSummaryGridView" runat="server" AutoGenerateColumns="False" Height="142px" style="margin-left: 237px; text-align: center;" Width="647px" CellPadding="4" ForeColor="#333333" GridLines="None">
             
              <AlternatingRowStyle BackColor="White" />
             
@@ -113,7 +114,7 @@
              <SortedDescendingCellStyle BackColor="#D4DFE1" />
              <SortedDescendingHeaderStyle BackColor="#15524A" />
         </asp:GridView>
-    </form>
+   
     <%--<script src="../Scripts/jquery-3.3.1.min.js"></script>
     <script src="../Scripts/jquery.validate.min.js"></script>
     <script>
@@ -131,5 +132,4 @@
             });
         });
     </script>--%>
-</body>
-</html>
+</asp:Content>

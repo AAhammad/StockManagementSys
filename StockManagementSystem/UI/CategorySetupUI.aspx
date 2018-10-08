@@ -54,18 +54,18 @@
  <%--     <script src="../Scripts/jquery-3.3.1.min.js"></script>
     <script src="../Scripts/jquery.validate.min.js"></script>--%>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
 
             $("#form1").validate({
                 rules: {
-                    <%= categoryNameTextBox.UniqueID %> : {
+                    <%= categoryNameTextBox.ClientID %>: {
                         required: true,
                         maxlength: 49
                     }
 
                 },
                 messages: {
-                    <%= categoryNameTextBox.UniqueID %> : {
+                    <%= categoryNameTextBox.ClientID %> : {
                         required: "Please enter your Category Name",
                         maxlength: "please enter no more than 49 characters"
                     }
@@ -92,6 +92,7 @@
         <br />
         <br />
         </div>
+       
         <table style="width: 89%; margin-left: 0px; height: 96px;">
             <tr>
                 <td class="auto-style3">
@@ -99,7 +100,7 @@
         <asp:Label ID="Label1" for="categoryNameTextBox" runat="server" Text="Name"></asp:Label>
                 </td>
                 <td class="auto-style5">
-        <asp:TextBox ID="categoryNameTextBox" name="categoryNameTextBox" runat="server" Height="20px" Width="143px"></asp:TextBox>
+        <asp:TextBox ID="categoryNameTextBox" name="categoryNameTextBox" runat="server" Height="31px" Width="147px"></asp:TextBox>
     
                 </td>
                 
@@ -129,6 +130,7 @@
             </tr>
          
         </table>
+             
         <div class="auto-style8">
             <br />
         </div>
@@ -164,7 +166,7 @@
     
     </div>         
     </div>
-    
+  
 
        
    </fieldset>
